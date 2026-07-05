@@ -1,0 +1,29 @@
+{
+  "name": "English 504 Master - ۵۰۴ واژه ضروری انگلیسی",
+  "short_name": "504 Master",
+  "description": "یادگیری ۵۰۴ واژه ضروری زبان انگلیسی با تلفظ صوتی، مثال و تمرین روزانه",
+  "start_url": "./index.html",
+  "id": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#F7F5EF",
+  "theme_color": "#1B4A44",
+  "lang": "fa",
+  "dir": "rtl",
+  "categories": ["education", "productivity"],
+  "icons": [
+    {
+      "src": "icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

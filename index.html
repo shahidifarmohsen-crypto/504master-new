@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover">
+<title>English 504 Master | ۵۰۴ واژه ضروری انگلیسی</title>
+<meta name="description" content="یادگیری ۵۰۴ واژه ضروری زبان انگلیسی همراه با تلفظ صوتی، مثال و تمرین روزانه">
+<meta name="theme-color" content="#F7F5EF">
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="icons/favicon-32.png">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700;800&family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="app">
+
+  <!-- Top bar -->
+  <div class="topbar">
+    <div class="brand">
+      <img src="icons/icon-192.png" alt="English 504 Master">
+      <div class="brand-text">
+        <b>English 504 Master</b>
+        <span>۵۰۴ واژه ضروری انگلیسی</span>
+      </div>
+    </div>
+    <button class="icon-btn" id="btnStreakTop">🔥<span id="streakTopNum" style="font-size:11px;margin-right:2px;"></span></button>
+  </div>
+
+  <main>
+    <!-- HOME -->
+    <section class="screen active" id="screen-home">
+      <div class="hero-card">
+        <h1 id="homeGreeting">سلام! 👋</h1>
+        <p>هر روز ۱۰ دقیقه، ۵۰۴ واژه ضروری انگلیسی را برای همیشه یاد بگیر.</p>
+        <div class="hero-stats">
+          <div class="hero-stat"><b id="statStreak">0</b><span>روز پیاپی</span></div>
+          <div class="hero-stat"><b id="statLearned">0</b><span>واژه آموخته</span></div>
+          <div class="hero-stat"><b id="statPercent">۰٪</b><span>پیشرفت کل</span></div>
+        </div>
+        <button class="btn" id="btnStartDaily">▶ شروع تمرین امروز</button>
+      </div>
+
+      <div class="section-title"><h2>ادامه یادگیری</h2><a data-nav="lessons">همه درس‌ها</a></div>
+      <div id="continueLessonCard"></div>
+
+      <div class="section-title"><h2>درس‌های پیشنهادی</h2></div>
+      <div class="lesson-grid" id="homeLessonPreview"></div>
+    </section>
+
+    <!-- LESSONS LIST -->
+    <section class="screen" id="screen-lessons">
+      <div class="section-title"><h2>همه درس‌ها (۴۲ درس)</h2></div>
+      <div class="lesson-grid" id="lessonGrid"></div>
+    </section>
+
+    <!-- LESSON DETAIL (Flashcards) -->
+    <section class="screen" id="screen-lesson-detail">
+      <div class="section-title">
+        <h2 id="lessonDetailTitle">درس</h2>
+        <a data-nav="lessons">بازگشت</a>
+      </div>
+      <div class="card-stage">
+        <div class="flash-counter"><span id="cardIndex">1</span> / <span id="cardTotal">12</span></div>
+        <div class="flashcard" id="flashcard">
+          <span class="pos-tag" id="cardPos">n</span>
+          <div class="word-en en" id="cardWordEn">word</div>
+          <div class="word-fa" id="cardWordFa">معنی</div>
+          <div class="divider"></div>
+          <div class="example">
+            <span class="en" id="cardExEn">Example sentence.</span>
+            <span id="cardExFa">مثال فارسی</span>
+          </div>
+          <div class="speak-row">
+            <button class="speak-btn en-btn" id="btnSpeakEn">🔊 EN</button>
+            <button class="speak-btn fa" id="btnSpeakFa">🔊 فا</button>
+          </div>
+        </div>
+        <div class="card-nav">
+          <button id="btnPrevCard">▶</button>
+          <div class="card-dots" id="cardDots"></div>
+          <button id="btnNextCard">◀</button>
+        </div>
+        <button class="btn" id="btnGoQuiz" style="margin-top:22px;">📝 شروع تمرین این درس</button>
+      </div>
+    </section>
+
+    <!-- QUIZ -->
+    <section class="screen" id="screen-quiz">
+      <div class="section-title"><h2 id="quizTitle">تمرین</h2><a data-nav="home">بازگشت</a></div>
+      <div class="quiz-progress">
+        <div class="progress-track"><div class="progress-fill" id="quizProgressFill" style="width:0%"></div></div>
+        <span id="quizProgressLabel" style="font-size:12px;color:var(--text-mute);">۱/۱۰</span>
+      </div>
+      <div id="quizArea"></div>
+    </section>
+
+    <!-- DAILY PRACTICE hub -->
+    <section class="screen" id="screen-daily">
+      <div class="section-title"><h2>تمرین روزانه</h2></div>
+      <div class="hero-card">
+        <h1>تمرین امروز آماده است 🎯</h1>
+        <p>۶ واژه به‌صورت تصادفی از واژه‌هایی که خوانده‌ای انتخاب می‌شود تا مرور کنی و در حافظه بلندمدت بماند.</p>
+        <button class="btn" id="btnDailyStart">▶ شروع تمرین روزانه</button>
+      </div>
+      <div class="section-title"><h2>وضعیت این هفته</h2></div>
+      <div id="weekStreakRow" style="display:flex;gap:6px;justify-content:space-between;"></div>
+    </section>
+
+    <!-- ALL WORDS / DICTIONARY -->
+    <section class="screen" id="screen-dictionary">
+      <div class="section-title"><h2>واژه‌نامه کامل (۵۰۴ واژه)</h2></div>
+      <div class="search-box">
+        <span>🔎</span>
+        <input type="text" id="searchInput" placeholder="جستجوی واژه انگلیسی یا فارسی...">
+      </div>
+      <div id="wordList"></div>
+    </section>
+
+    <!-- PROGRESS / SETTINGS -->
+    <section class="screen" id="screen-progress">
+      <div class="section-title"><h2>پیشرفت من</h2></div>
+      <div class="hero-card">
+        <h1 id="progressPercentBig">۰٪</h1>
+        <p>از ۵۰۴ واژه موجود در برنامه</p>
+        <div class="progress-track" style="margin-top:14px;"><div class="progress-fill" id="progressBarBig" style="width:0%"></div></div>
+      </div>
+      <div class="section-title"><h2>پیشرفت هر درس</h2></div>
+      <div id="lessonProgressList"></div>
+      <div class="section-title"><h2>تنظیمات</h2></div>
+      <button class="btn danger" id="btnResetProgress">🗑 پاک‌کردن کامل پیشرفت</button>
+    </section>
+  </main>
+
+  <!-- Bottom nav -->
+  <nav class="bottom-nav">
+    <button class="nav-item active" data-nav="home"><span class="ic">🏠</span>خانه</button>
+    <button class="nav-item" data-nav="lessons"><span class="ic">📚</span>درس‌ها</button>
+    <button class="nav-item" data-nav="daily"><span class="ic">🎯</span>روزانه</button>
+    <button class="nav-item" data-nav="dictionary"><span class="ic">📖</span>واژه‌نامه</button>
+    <button class="nav-item" data-nav="progress"><span class="ic">📈</span>پیشرفت</button>
+  </nav>
+
+  <div class="toast" id="toast"></div>
+</div>
+
+<script src="words.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
